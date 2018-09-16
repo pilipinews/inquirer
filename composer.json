@@ -1,0 +1,24 @@
+{
+    "name": "pilipinews/inquirer",
+    "description": "Crawler and scraper for Inquirer News website.",
+    "homepage": "https://github.com/pilipinews/inquirer",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.3.0",
+        "pilipinews/common": "~0.1",
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.2|~5.7",
+        "scrutinizer/ocular": "~1.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pilipinews\\Website\\Inquirer\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pilipinews\\Website\\Inquirer\\": "tests"
+        }
+    }
+}

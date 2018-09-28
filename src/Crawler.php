@@ -3,8 +3,8 @@
 namespace Pilipinews\Website\Inquirer;
 
 use Pilipinews\Common\Client;
+use Pilipinews\Common\Crawler as DomCrawler;
 use Pilipinews\Common\Interfaces\CrawlerInterface;
-use Symfony\Component\DomCrawler\Crawler as DomCrawler;
 
 /**
  * Inquirer News Crawler
@@ -28,12 +28,14 @@ class Crawler implements CrawlerInterface
     {
         $link = 'https://newsinfo.inquirer.net/category/latest-stories';
 
-        $response = Client::request((string) $link);
+        $response = Client::request($link);
 
-        $callback = function (DomCrawler $node) {
+        $allowed = (array) $this->allowed;
+
+        $callback = function (DomCrawler $node) use ($allowed) {
             $category = $node->filter('#ch-cat')->first();
 
-            $allowed = in_array($category->text(), $this->allowed);
+            $allowed = in_array($category->text(), $allowed);
 
             $link = $node->filter('a')->first();
 

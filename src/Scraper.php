@@ -3,6 +3,7 @@
 namespace Pilipinews\Website\Inquirer;
 
 use Pilipinews\Common\Article;
+use Pilipinews\Common\Client;
 use Pilipinews\Common\Crawler as DomCrawler;
 use Pilipinews\Common\Interfaces\ScraperInterface;
 use Pilipinews\Common\Scraper as AbstractScraper;
@@ -110,6 +111,25 @@ class Scraper extends AbstractScraper implements ScraperInterface
         };
 
         return $this->replace($crawler, '.fb-video', $callback);
+    }
+
+    /**
+     * Initializes the crawler instance.
+     *
+     * @param  string $link
+     * @return void
+     */
+    protected function prepare($link)
+    {
+        $response = Client::request((string) $link);
+
+        $response = str_replace('<p>Click <a href="https://www.inquirer.net/philippine-typhoon-news">here</a> for more weather related news."</p>', '', $response);
+
+        $response = str_replace('<p>Click <a href="https://www.inquirer.net/philippine-typhoon-news">here</a> for more weather related news.</p>', '', $response);
+
+        $response = str_replace('<strong> </strong>', ' ', $response);
+
+        $this->crawler = new DomCrawler($response);
     }
 
     /**

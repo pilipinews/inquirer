@@ -64,7 +64,7 @@ class Scraper extends AbstractScraper implements ScraperInterface
 
         $body = $this->fbvideo($body);
 
-        $body = $this->video($body)->html();
+        $body = $this->fbpost($body)->html();
 
         $body = preg_replace($pattern, '.jpg', $body);
 
@@ -83,7 +83,8 @@ class Scraper extends AbstractScraper implements ScraperInterface
      */
     protected function caption(DomCrawler $crawler)
     {
-        $callback = function (DomCrawler $crawler) {
+        $callback = function (DomCrawler $crawler)
+        {
             $image = $crawler->filter('img')->first()->attr('src');
 
             $format = (string) '<p>PHOTO: %s</p><p>%s</p>';
@@ -97,6 +98,28 @@ class Scraper extends AbstractScraper implements ScraperInterface
     }
 
     /**
+     * Converts Facebook embedded posts to readable string.
+     *
+     * @param  \Pilipinews\Common\Crawler $crawler
+     * @return \Pilipinews\Common\Crawler
+     */
+    protected function fbpost(DomCrawler $crawler)
+    {
+        $callback = function (DomCrawler $crawler)
+        {
+            $link = $crawler->attr('cite');
+
+            $text = '<p>POST: ' . $crawler->attr('cite') . '</p>';
+
+            $message = $crawler->filter('p > a')->first();
+
+            return $text . '<p>' . $message->text() . '</p>';
+        };
+
+        return $this->replace($crawler, '.fb-xfbml-parse-ignore', $callback);
+    }
+
+    /**
      * Converts fbvideo elements to readable string.
      *
      * @param  \Pilipinews\Common\Crawler $crawler
@@ -104,7 +127,8 @@ class Scraper extends AbstractScraper implements ScraperInterface
      */
     protected function fbvideo(DomCrawler $crawler)
     {
-        $callback = function (DomCrawler $crawler) {
+        $callback = function (DomCrawler $crawler)
+        {
             $link = $crawler->attr('data-href');
 
             return '<p>VIDEO: ' . $link . '</p>';
@@ -130,32 +154,5 @@ class Scraper extends AbstractScraper implements ScraperInterface
         $response = str_replace('<strong> </strong>', ' ', $response);
 
         $this->crawler = new DomCrawler($response);
-    }
-
-    /**
-     * Converts video elements to readable string.
-     *
-     * @param  \Pilipinews\Common\Crawler $crawler
-     * @return \Pilipinews\Common\Crawler
-     */
-    protected function video(DomCrawler $crawler)
-    {
-        $callback = function (DomCrawler $crawler) {
-            $link = (string) $crawler->attr('src');
-
-            return '<p>VIDEO: ' . $link . '</p>';
-        };
-
-        $crawler = $this->replace($crawler, 'p > iframe', $callback);
-
-        $callback = function (DomCrawler $crawler) {
-            $text = '<p>VIDEO: ' . $crawler->attr('cite') . '</p>';
-
-            $message = $crawler->filter('p > a')->first();
-
-            return $text . '<p>' . $message->text() . '</p>';
-        };
-
-        return $this->replace($crawler, '.fb-xfbml-parse-ignore', $callback);
     }
 }

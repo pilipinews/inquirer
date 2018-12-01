@@ -6,7 +6,7 @@ namespace Pilipinews\Website\Inquirer;
  * Scraper Test
  *
  * @package Pilipinews
- * @author  Rougin Royce Gutib <rougingutib@gmail.com>
+ * @author  Rougin Gutib <rougingutib@gmail.com>
  */
 class ScraperTest extends \PHPUnit_Framework_TestCase
 {

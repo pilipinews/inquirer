@@ -12,7 +12,7 @@ use Pilipinews\Common\Scraper as AbstractScraper;
  * Inquirer News Scraper
  *
  * @package Pilipinews
- * @author  Rougin Royce Gutib <rougingutib@gmail.com>
+ * @author  Rougin Gutib <rougingutib@gmail.com>
  */
 class Scraper extends AbstractScraper implements ScraperInterface
 {
@@ -87,7 +87,7 @@ class Scraper extends AbstractScraper implements ScraperInterface
         {
             $image = $crawler->filter('img')->first()->attr('src');
 
-            $format = (string) '<p>PHOTO: %s</p><p>%s</p>';
+            $format = (string) '<p>PHOTO: %s - %s</p>';
 
             $text = $crawler->filter('.wp-caption-text')->first();
 

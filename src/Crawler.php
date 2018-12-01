@@ -32,7 +32,8 @@ class Crawler implements CrawlerInterface
 
         $allowed = (array) $this->allowed;
 
-        $callback = function (DomCrawler $node) use ($allowed) {
+        $callback = function (DomCrawler $node) use ($allowed)
+        {
             $category = $node->filter('#ch-cat')->first();
 
             if (! $category->count())

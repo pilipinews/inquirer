@@ -7,8 +7,6 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-Crawler and scraper for [Inquirer News](https://newsinfo.inquirer.net/) website.
-
 ## Installation
 
 Install `Inquirer News` via [Composer](https://getcomposer.org/):
@@ -16,10 +14,6 @@ Install `Inquirer News` via [Composer](https://getcomposer.org/):
 ``` bash
 $ composer require pilipinews/inquirer
 ```
-
-## Basic Usage
-
-Coming soon.
 
 ## Changelog
 

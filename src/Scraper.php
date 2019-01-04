@@ -50,7 +50,7 @@ class Scraper extends AbstractScraper implements ScraperInterface
      */
     public function scrape($link)
     {
-        $this->prepare((string) mb_strtolower($link));
+        $this->prepare(mb_strtolower($link));
 
         $title = $this->title('.entry-title');
 
@@ -72,7 +72,7 @@ class Scraper extends AbstractScraper implements ScraperInterface
 
         $body = str_replace(self::TEXT_FOOTER, '', trim($body));
 
-        return new Article($title, (string) trim($body));
+        return new Article($title, trim($body), $link);
     }
 
     /**

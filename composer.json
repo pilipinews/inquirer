@@ -1,7 +1,7 @@
 {
     "name": "pilipinews/inquirer",
-    "description": "Crawler and scraper for the Inquirer News website.",
-    "homepage": "https://github.com/pilipinews/inquirer",
+    "description": "Crawler/scraper for Inquirer News.",
+    "homepage": "https://pilipinews.github.io/",
     "license": "MIT",
     "authors":
     [
@@ -15,7 +15,7 @@
     "require":
     {
         "php": ">=5.3.0",
-        "pilipinews/common": "~0.1"
+        "pilipinews/common": "~0.2"
     },
     "require-dev":
     {

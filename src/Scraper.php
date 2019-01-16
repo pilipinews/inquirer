@@ -40,6 +40,8 @@ class Scraper extends AbstractScraper implements ScraperInterface
         '#read-next-2018',
         '#rn-lbl',
         '#fb-root',
+        '#lsmr-lbl',
+        '#lsmr-box',
     );
 
     /**

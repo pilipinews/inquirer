@@ -18,6 +18,8 @@ class Scraper extends AbstractScraper implements ScraperInterface
 {
     const TEXT_FOOTER = 'Subscribe to INQUIRER PLUS (http://www.inquirer.net/plus) to get access to The Philippine Daily Inquirer & other 70+ titles, share up to 5 gadgets, listen to the news, download as early as 4am & share articles on social media. Call 896 6000.';
 
+    const VIDEO_STYLE = '#videoPlaylistPlugId ul li { color:#fff;}';
+
     /**
      * @var string[]
      */
@@ -74,7 +76,9 @@ class Scraper extends AbstractScraper implements ScraperInterface
 
         $body = str_replace(self::TEXT_FOOTER, '', trim($body));
 
-        return new Article($title, trim($body), $link);
+        $body = str_replace(self::VIDEO_STYLE, '', $body);
+
+        return new Article($title, trim($body), (string) $link);
     }
 
     /**

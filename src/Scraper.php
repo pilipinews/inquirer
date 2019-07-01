@@ -29,6 +29,8 @@ class Scraper extends AbstractScraper implements ScraperInterface
      * @var string[]
      */
     protected $removables = array(
+        '#ms-slider-wrap',
+        '#mr-2018-wrap',
         'script',
         '#billboard_article',
         '.ventuno-vid',

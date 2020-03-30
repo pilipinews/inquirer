@@ -16,7 +16,7 @@ use Pilipinews\Common\Scraper as AbstractScraper;
  */
 class Scraper extends AbstractScraper implements ScraperInterface
 {
-    const TEXT_FOOTER = 'Subscribe to INQUIRER PLUS (http://www.inquirer.net/plus) to get access to The Philippine Daily Inquirer & other 70+ titles, share up to 5 gadgets, listen to the news, download as early as 4am & share articles on social media. Call 896 6000.';
+    const TEXT_FOOTER = 'Subscribe to INQUIRER PLUS (https://www.inquirer.net/plus) to get access to The Philippine Daily Inquirer & other 70+ titles, share up to 5 gadgets, listen to the news, download as early as 4am & share articles on social media. Call 896 6000.';
 
     const VIDEO_STYLE = '#videoPlaylistPlugId ul li { color:#fff;}';
 

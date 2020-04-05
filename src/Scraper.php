@@ -46,6 +46,7 @@ class Scraper extends AbstractScraper implements ScraperInterface
         '#fb-root',
         '#lsmr-lbl',
         '#lsmr-box',
+        '.bb_iawr',
     );
 
     /**
@@ -77,6 +78,8 @@ class Scraper extends AbstractScraper implements ScraperInterface
         $body = $this->html(new DomCrawler($body), $this->refresh);
 
         $body = str_replace(self::TEXT_FOOTER, '', trim($body));
+
+        $body = str_replace('#videoPlaylistPlugId ul li { color:#fff;}', '', $body);
 
         $body = str_replace(self::VIDEO_STYLE, '', $body);
 

@@ -20,7 +20,9 @@ class Scraper extends AbstractScraper implements ScraperInterface
 
     const TEXT_FOOTER2 = 'Subscribe to INQUIRER PLUS (https://www.inquirer.net/plus) to get access to The Philippine Daily Inquirer &amp; other 70+ titles, share up to 5 gadgets, listen to the news, download as early as 4am &amp; share articles on social media. Call 896 6000.';
 
-    const VIDEO_STYLE = '#videoPlaylistPlugId ul li { color:#fff;}';
+    const TEXT_FOOTER3 = "\n\n" . 'For more news about the novel coronavirus click here. (https://www.inquirer.net/novel-coronavirus-update)';
+
+    const TEXT_FOOTER4 = "\n\n" . 'What you need to know about Coronavirus. (https://newsinfo.inquirer.net/1243479/coronavirus-pandemic-2020-everything-you-need-to-know)';
 
     /**
      * @var string[]
@@ -49,6 +51,7 @@ class Scraper extends AbstractScraper implements ScraperInterface
         '#lsmr-lbl',
         '#lsmr-box',
         '.bb_iawr',
+        'style',
     );
 
     /**
@@ -79,13 +82,13 @@ class Scraper extends AbstractScraper implements ScraperInterface
 
         $body = $this->html(new DomCrawler($body), $this->refresh);
 
+        $body = str_replace(self::TEXT_FOOTER3, '', trim($body));
+
         $body = str_replace(self::TEXT_FOOTER, '', trim($body));
 
+        $body = str_replace(self::TEXT_FOOTER4, '', trim($body));
+
         $body = str_replace(self::TEXT_FOOTER2, '', trim($body));
-
-        $body = str_replace('#videoPlaylistPlugId ul li { color:#fff;}', '', $body);
-
-        $body = str_replace(self::VIDEO_STYLE, '', $body);
 
         return new Article($title, trim($body), (string) $link);
     }

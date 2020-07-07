@@ -52,6 +52,8 @@ class Scraper extends AbstractScraper implements ScraperInterface
         '#lsmr-box',
         '.bb_iawr',
         'style',
+        '.ob_amplifypixel',
+        '.lazyload',
     );
 
     /**

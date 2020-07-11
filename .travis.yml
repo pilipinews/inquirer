@@ -10,14 +10,14 @@ php:
   - 7.3
   - 7.4
 
-jobs:
-  include:
-    - php: 5.3
-      dist: precise
-    - php: 5.4
-      dist: trusty
-    - php: 5.5
-      dist: trusty
+# jobs: # Issues with SSL
+#   include:
+#     - php: 5.3
+#       dist: precise
+#     - php: 5.4
+#       dist: trusty
+#     - php: 5.5
+#       dist: trusty
 
 before_install:
   - echo "memory_limit=-1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
